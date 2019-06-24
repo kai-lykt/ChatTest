@@ -1,0 +1,36 @@
+{
+  "name": "electron_chat",
+  "version": "1.0.0",
+  "main": "lib/main/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "watch": "babel src --watch --out-dir lib",
+    "build": "babel src -d lib",
+    "copy:resources": "cpx \"prod_resources/**/*\" dist",
+    "copy:photon": "cpx \"node_modules/photon/dist/css/**/*\" dist/css && cpx \"node_modules/photon/dist/fonts/**/*\" dist/fonts",
+    "prebundle": "yarn run copy:resources && yarn run copy:photon",
+    "bundle": "webpack",
+    "package": "yarn run bundle && electron-packager dist \"Electron Chat\" --all --out=release --icon=\"icon/icon\""
+  },
+  "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "cpx": "^1.5.0",
+    "electron-packager": "^14.0.0",
+    "firebase": "^6.2.1",
+    "history": "^4.9.0",
+    "photon": "connors/photon",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "3.2.1",
+    "webpack": "^2.7.0"
+  },
+  "devDependencies": {
+    "electron": "^5.0.4"
+  }
+}
